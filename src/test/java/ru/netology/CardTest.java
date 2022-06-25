@@ -9,10 +9,10 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class CardTest {
 
@@ -33,6 +33,22 @@ public class CardTest {
         $(byText("Запланировать")).click();
         $("[data-test-id='success-notification'] .notification__title")
                 .shouldBe(Condition.appear, Duration.ofSeconds(15))
+                .shouldHave((text("Успешно!")));
+        $("[data-test-id='success-notification'] .notification__content")
+                .shouldBe(Condition.visible)
+                .shouldHave(text("Встреча успешно запланирована на " + meetingDateNearest));
+
+        $(byText("Запланировать")).click();
+        $("[data-test-id='replan-notification'] .notification__title")
+                .shouldBe(Condition.appear, Duration.ofSeconds(15))
+                .shouldHave((text("Необходимо подтверждение")));
+        $("[data-test-id='replan-notification'] .notification__content")
+                .shouldBe(Condition.visible)
+                .shouldHave(text("У вас уже запланирована встреча на другую дату. Перепланировать?"));
+
+        $$("button").find((exactText("Перепланировать"))).click();
+        $("[data-test-id='success-notification'] .notification__title")
+                .shouldBe(Condition.appear, Duration.ofSeconds(4))
                 .shouldHave((text("Успешно!")));
         $("[data-test-id='success-notification'] .notification__content")
                 .shouldBe(Condition.visible)
