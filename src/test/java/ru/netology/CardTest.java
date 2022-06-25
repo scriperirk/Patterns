@@ -30,13 +30,13 @@ public class CardTest {
         $("[data-test-id=name] input").setValue("Афанасов Антон");
         $("[data-test-id=phone] input").setValue("+79000000880");
         $("[data-test-id='agreement'] .checkbox__box").click();
-        $(byText("Забронировать")).click(); // что то поменялось
-        $("[data-test-id='notification'] .notification__title")
+        $(byText("Запланировать")).click();
+        $("[data-test-id='success-notification'] .notification__title")
                 .shouldBe(Condition.appear, Duration.ofSeconds(15))
                 .shouldHave((text("Успешно!")));
-        $("[data-test-id='notification'] .notification__content")
+        $("[data-test-id='success-notification'] .notification__content")
                 .shouldBe(Condition.visible)
-                .shouldHave(text("Встреча успешно забронирована на " + meetingDateNearest));
+                .shouldHave(text("Встреча успешно запланирована на " + meetingDateNearest));
 
     }
 }
