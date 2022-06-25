@@ -30,7 +30,7 @@ public class CardTest {
         $("[data-test-id=name] input").setValue("Афанасов Антон");
         $("[data-test-id=phone] input").setValue("+79000000880");
         $("[data-test-id='agreement'] .checkbox__box").click();
-        $(byText("Забронировать")).click();
+        $(byText("Забронировать")).click(); // что то поменялось
         $("[data-test-id='notification'] .notification__title")
                 .shouldBe(Condition.appear, Duration.ofSeconds(15))
                 .shouldHave((text("Успешно!")));
