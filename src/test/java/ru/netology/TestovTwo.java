@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 import static ru.netology.AuthTest.Registration.*;
 
-public class Testov {
+public class TestovTwo {
     @Test
     void shouldLoginActiveUser() {
         open("http://localhost:9999");
