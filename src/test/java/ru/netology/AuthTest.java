@@ -12,6 +12,7 @@ import java.util.Locale;
 import static io.restassured.RestAssured.given;
 
 public class AuthTest {
+
     private static final RequestSpecification requestSpec = new RequestSpecBuilder()
             .setBaseUri("http://localhost")
             .setPort(9999)
